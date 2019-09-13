@@ -1,10 +1,12 @@
 package dao;
 
+import static dao.FacultyDao.getCon;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Faculty;
 import model.Student;
 
 public class StudentDao {
@@ -13,6 +15,30 @@ public class StudentDao {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/management","root","");
             return con;
         }
+        
+        public static Student get(int id){
+            try {
+                PreparedStatement ps = getCon().prepareStatement("select * from student where id = ? ");
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    Student s = new Student();
+                    s.setId(rs.getInt("id"));
+                    s.setName(rs.getString("name"));
+                    s.setCourse(rs.getString("course"));
+                    s.setContact_no(rs.getString("contact"));
+                    s.setAddress(rs.getString("address"));
+                    s.setEmail(rs.getString("email"));
+                    return s;
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(FacultyDao.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(FacultyDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;
+        }
+        
         public static List<Student> getAllStudents(){
             List<Student> list = new ArrayList<>();
             try {
