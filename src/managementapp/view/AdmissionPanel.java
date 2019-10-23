@@ -52,7 +52,7 @@ public class AdmissionPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 51, 51));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admission");
+        jLabel1.setText("Students");
         jPanel1.add(jLabel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

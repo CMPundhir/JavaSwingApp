@@ -44,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
     FacultyPanel facultyPanel;
     FeeStructurePanel feeStructurePanel;
     HomePanel homePanel;
-    HomePanel aboutUs;
+    AboutUsPanel aboutUs;
     
     JButton admissionBtn = new MyButton(" X ");
     JButton facultyBtn = new MyButton(" X ");
@@ -62,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         facultyPanel = new FacultyPanel();
         feeStructurePanel = new FeeStructurePanel();
         homePanel = new HomePanel();
-        aboutUs = new HomePanel();
+        aboutUs = new AboutUsPanel();
         setCrossBtnDefault();
     }
     
@@ -208,7 +208,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
 
-        jButton4.setText("Admission");
+        jButton4.setText("Students");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);

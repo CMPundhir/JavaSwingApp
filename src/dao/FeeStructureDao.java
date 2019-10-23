@@ -29,7 +29,7 @@ public class FeeStructureDao {
         }
         public static Course get(int id){
             try {
-                PreparedStatement ps = getCon().prepareStatement("select * from course where id = ?");
+                PreparedStatement ps = getCon().prepareStatement("select * from fee_structure where id = ?");
                 ps.setInt(1, id);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
@@ -93,7 +93,7 @@ public class FeeStructureDao {
         
         public static int add(Course s){
             try {
-                PreparedStatement ps = getCon().prepareStatement("INSERT INTO `course`(`title`, `duration`, `fee`) VALUES (?,?,?)");
+                PreparedStatement ps = getCon().prepareStatement("INSERT INTO `fee_structure`(`title`, `duration`, `fee`) VALUES (?,?,?)");
                 ps.setString(1, s.getTitle());
                 ps.setString(2, s.getDuration());
                 ps.setInt(3, s.getFee());
@@ -110,7 +110,7 @@ public class FeeStructureDao {
         
         public static int update(Course s){
             try {
-                PreparedStatement ps = getCon().prepareStatement("UPDATE `course` SET `title`=?,`duration`=?,`cont_no`=? WHERE id = ?");
+                PreparedStatement ps = getCon().prepareStatement("UPDATE `fee_structure` SET `title`=?,`duration`=?,`cont_no`=? WHERE id = ?");
                  ps.setString(1, s.getTitle());
                 ps.setString(2, s.getDuration());
                 ps.setInt(3, s.getFee());
@@ -128,7 +128,7 @@ public class FeeStructureDao {
         
         public static int delete(int id){
             try {
-                PreparedStatement ps = getCon().prepareStatement("DELETE from course WHERE id = ?");
+                PreparedStatement ps = getCon().prepareStatement("DELETE from fee_structure WHERE id = ?");
                 ps.setInt(1, id);
                 
                 int res = ps.executeUpdate();

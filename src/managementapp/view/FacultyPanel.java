@@ -21,7 +21,8 @@ public class FacultyPanel extends javax.swing.JPanel {
      */
     DefaultTableModel dtm;
     public FacultyPanel() {
-        initComponents();String[] tblHead={"S No","Name","Department","Contact"};
+        initComponents();
+        String[] tblHead={"S No","Name","Department","Contact"};
         dtm=new DefaultTableModel(tblHead,0);
         jTable1.setModel(dtm);
         setDataIntoTable();

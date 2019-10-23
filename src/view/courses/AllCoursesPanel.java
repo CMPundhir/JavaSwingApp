@@ -5,6 +5,10 @@
  */
 package view.courses;
 
+import dao.FeeStructureDao;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author cm
@@ -14,8 +18,25 @@ public class AllCoursesPanel extends javax.swing.JPanel {
     /**
      * Creates new form AllCoursesPanel
      */
+    DefaultTableModel dtm;
     public AllCoursesPanel() {
         initComponents();
+        String[] tblHead={"Course ID","Title","Fee","Duration"};
+        dtm=new DefaultTableModel(tblHead,0);
+        jTable1.setModel(dtm);
+        setDataIntoTable();
+    }
+
+    private void setDataIntoTable(){
+        int rowCount = dtm.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            dtm.removeRow(i);
+        }
+        List<String[]> list = FeeStructureDao.getAll2();
+        for(int i=0;i<list.size();i++){
+            dtm.addRow(list.get(i));
+        }
     }
 
     /**

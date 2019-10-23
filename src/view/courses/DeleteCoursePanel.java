@@ -5,6 +5,10 @@
  */
 package view.courses;
 
+import dao.FeeStructureDao;
+import javax.swing.JOptionPane;
+import model.Course;
+
 /**
  *
  * @author cm
@@ -66,8 +70,18 @@ public class DeleteCoursePanel extends javax.swing.JPanel {
         jLabel5.setText("Duration :");
 
         jButton1.setText("Delete Course");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Fetch Course Data");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,7 +111,6 @@ public class DeleteCoursePanel extends javax.swing.JPanel {
                 .addComponent(jButton2)
                 .addContainerGap(128, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(jButton1)
                 .addGap(330, 330, 330))
         );
@@ -145,6 +158,31 @@ public class DeleteCoursePanel extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(jTextField1.getText());
+        Course c = FeeStructureDao.get(id);
+        if(c!=null){
+            jTextField2.setText(c.getTitle());
+            jTextField3.setText(c.getFee()+"");
+            jTextField4.setText(c.getDuration());
+            JOptionPane.showMessageDialog(this, "Course found successfully.");
+        }else{
+            JOptionPane.showMessageDialog(this, "No Course Found");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int id = Integer.parseInt(jTextField1.getText());
+        int res = FeeStructureDao.delete(id);
+        if(res>0){
+            JOptionPane.showMessageDialog(this, "Course deleted successfully.");
+        }else{
+            JOptionPane.showMessageDialog(this, "Something went wrong");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
